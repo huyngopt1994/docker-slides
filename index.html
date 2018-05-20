@@ -46,7 +46,7 @@
         <section data-markdown>
           <script type="text/template">
             # Docker 
-            From docker official training by Johnny Tu 
+            From docker official training by Huy.Ngo
           </script>
         </section>
 
@@ -280,8 +280,6 @@
               Three tools for orchestrating distributed applications with Docker
               - Docker Machine
                 - Tool that provisions Docker hosts and installs the Docker Engine on them
-              - Docker Swarm
-                - Tool that clusters many Engines and schedules containers
               - Docker Compose
                 - Tool to create and manage multi-container applications
             </script>
@@ -1058,13 +1056,19 @@
               ```
               version: '2'
               services:
-                javaclient:
+                web:
                   build: .
-                  command: java HelloWorld
+                  ports:
+                  - "5000:5000"
+                  volumes:
+                  - .:/code
+                  - logvolume01:/var/log
                   links:
                   - redis
                 redis:
                   image: redis
+              volumes:
+                logvolume01: {}
               ```
             </script>
           </section>
@@ -1165,9 +1169,6 @@
               ##Sources and reference:
               <br>
               https://docs.docker.com/userguide/
-              https://training.docker.com/
-              <br>
-              By Johnny Tu
               <br>
               <br>
               https://docs.docker.com/reference/commandline/run/
