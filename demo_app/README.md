@@ -1,0 +1,1 @@
+This is  folder to create a simple flask app with using docker-compose
