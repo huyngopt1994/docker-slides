@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Docker Compose Example</title>
+    <link rel="stylesheet" href='{{ url_for("static", filename="css/style.css") }}'>
+</head>
+<body>
+<h1>Welcome to simple experiment with microservices using Docker - DEK </h1>
+<section>
+    <div class="left">
+        {% if not error %}
+
+            <h2>The number of visted {{count}}</h2>
+        {% endif %}
+        
+        <form action="/" method="get">
+            <input type="submit" value="Increase_1">
+        </form>
+        {% if error %}
+        <p> {{error}}</p>
+        {% endif %}
+
+        <form action="/" method="post">
+            <label>
+                Seletecd Number: <input type="text" name="selected_number">
+            </label>
+
+            <input type="submit" value="Custom_increase">
+        </form>
+        <form action="/reset" method="get">
+            <input type="submit" value="reset it">
+        </form>
+    </div>
+    <div class="right">
+        <h3>{{ fibo }}</h3>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+version: '2'
+services:
+  web:
+    build: .
+    ports:
+    - "5000:5000"
+    volumes:
+    - .:/web-app
+    tty: true
+    links:
+    - redis
+    command: /bin/sh
+
+  generate_fibonaci:
+    build: ./generate_fibonaci
+    ports:
+    - "6000:6000"
+    volumes:
+      - .:/generate_fibonaci
+    tty: true
+    links:
+    - web
+    command: /bin/sh
+
+  redis:
+    image: redis
