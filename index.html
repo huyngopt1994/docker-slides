@@ -40,12 +40,13 @@
   <body>
 
     <div class="reveal">
-
+      <p>Contact: <span>info-vn@dektech.com.au</span></p>
+      <img class="logo" src="img/DEKLOGO_RGB.png">
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section data-markdown>
           <script type="text/template">
-            # Docker 
+            # Docker
             From docker official training by Huy.Ngo
           </script>
         </section>
@@ -374,87 +375,12 @@
               /\*Take a look\*/
             </script>
           </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Running in Detached Mode
-              - Also know as running in the background or as a daemon
-              - Use -d flag
-              - To observe output use docker logs [container id]
-
-              <br>
-              Example:
-              ```
-              docker run -d ubuntu ping 127.0.0.1 -c 50
-
-              ```
-
-              /\*Take a look\*/
-            </script>
-          </section>
-
         </section>
-<!--
         <section>
 
           <section data-markdown>
             <script type="text/template">
-              #5. Building images
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Image Layers
-              - Images are composed of multiple layers
-              - A layer is also just another image
-              - Every image contains a base layer
-              - Docker uses a copy on write system
-              - Layers are read only
-            </script>
-          </section>
-
-          <section>
-            <img src="img/docker_image_layers.png" alt="">
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##The Container Writable Layer
-              - Docker creates a top writable layer for containers
-              - Parent images are read only
-              - All changes are made at the writeable layer
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Docker commit
-              - **docker commit** command saves changes in a container as a new image
-
-              ```
-              docker commit [options] [container ID] [repository:tag]
-              ```
-
-              - Repository name should be based on username/application
-              - Can reference the container with container name instead of ID
-
-              ```
-              docker commit <id> lodelestra/vim:1.0
-              ```
-
-              >note default tag is latest
-
-              /\*lets try commit and run\*/
-            </script>
-          </section>
-        </section>
--->
-        <section>
-
-          <section data-markdown>
-            <script type="text/template">
-              #6. Dockerfile
+              #5. Dockerfile
             </script>
           </section>
 
@@ -607,75 +533,13 @@
               Adding a layer is very faster than building first image
             </script>
           </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ###ENTRYPOINT Instruction
-              - Defines the command that will run when a container is executed
-              - Run time arguments and CMD instruction are passed as parameters to the ENTRYPOINT instruction
-              - Shell and EXEC form
-              - EXEC form preferred as shell form cannot accept arguments at run time
-              - Container essentially runs as an executable
-              - ENTRYPOINT cant be override at runtime
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ###Example
-              Dockerfile
-              ```bash
-              bash-3.2$ cat Dockerfile 
-              FROM ubuntu:14.04
-              RUN apt-get update && apt-get install -y vim
-              ENTRYPOINT ["ping"]
-              ```
-              build the image
-              ```bash
-              bash-3.2$ docker build -t lodelestra/buildproject:1.2 .
-              Sending build context to Docker daemon 2.048 kB
-              Step 0 : FROM ubuntu:14.04
-               ---> 91e54dfb1179
-              Step 1 : RUN apt-get update && apt-get install -y vim
-               ---> Using cache
-               ---> 58c42776c9b7
-              Step 2 : ENTRYPOINT ping
-               ---> Running in d8ffe9f42f9d
-               ---> 4f940463520e
-              Removing intermediate container d8ffe9f42f9d
-              Successfully built 4f940463520e
-              ```
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              how to use it
-              ```bash
-              bash-3.2$ docker run lodelestra/buildproject:1.2
-              Usage: ping [-aAbBdDfhLnOqrRUvV] [-c count] [-i interval] [-I interface]
-                          [-m mark] [-M pmtudisc_option] [-l preload] [-p pattern] [-Q tos]
-                          [-s packetsize] [-S sndbuf] [-t ttl] [-T timestamp_option]
-                          [-w deadline] [-W timeout] [hop1 ...] destination
-              bash-3.2$ docker run lodelestra/buildproject:1.2 127.0.0.1 -c 10
-              PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
-              64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.032 ms
-              #...
-              64 bytes from 127.0.0.1: icmp_seq=10 ttl=64 time=0.038 ms
-
-              --- 127.0.0.1 ping statistics ---
-              10 packets transmitted, 10 received, 0% packet loss, time 8996ms
-              rtt min/avg/max/mdev = 0.032/0.041/0.050/0.004 ms
-              ```
-            </script>
-          </section>
         </section>
 
         <section>
         
           <section data-markdown>
             <script type="text/template">
-              #7. Managing Images and Containers
+              #6. Managing Images and Containers
             </script>
           </section>
         
@@ -758,218 +622,11 @@
             </script>
           </section>
         </section>
-<!--
+
         <section>
-
           <section data-markdown>
             <script type="text/template">
-              #8. Volumes
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Volumes
-              >A volumes is a designated directory in a container, wich is designed to persist data, independent of the container's file cycle
-
-              - Volume changes are excluded when updating an image
-              - Persist when a container is deleted
-              - Can be mapped to a host folder
-              - Can be shared between containers
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Mount a Volume
-              - Volumes are mounted when creating or executing a container
-              - Can be mapped to a host directory
-              - Volume paths specified must be absolute
-
-              ```
-              #Execute a new container and mount the named volume 'testvolume' to the folder /myvolume into its file system
-              docker run -d -P -v testvolume:/myvolume nginx:1.9.4
-              #Execute a new container and map the /data/src folder from the host into the /test/src folder in the container
-              docker run -i -t -v /data/src:/test/src nginx:1.9.4
-              docker run -d -v "$(pwd)"/target:/app nginx
-              ```
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Volumes in Dockerfile
-              - VOLUME instruction creates a mount point
-              - Can specify arguments JSON array or string
-              - Cannot map volumes to host directories
-              - Volumes are initialized when the container is executed
-              
-              ```
-              #String example
-              VOLUME /myvol
-              #String example with multiple volumes
-              VOLUME /www/website1.com /www/website2.com
-              #JSON example
-              VOLUME ["myvol", "myvol2"]
-              ```
-
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Uses of volumes
-              - De-couple the data that is stored from the container which created the data (exemple logs)
-              - Good for sharing data between containers
-                - Can setup a data containers which has a volume you mount in other containers
-              - Mounting folders from the host is good for testing purpose but generally not recommended for production use
-            </script>
-          </section>
-        </section>
--->
-        <section>
-
-          <section data-markdown>
-            <script type="text/template">
-              #8. Container Networking Basics
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Mapping ports
-              - **Recall:** containers have their own network and IP address
-              - Map exposed container ports to ports on the host machine
-              - Ports can be manually mapped or auto mapped
-              - Uses the -p and -P parameters in `docker run`
-
-              ```
-              #Maps port 80 on the container to 8080 on the host
-              docker run -d -p 8080:80 nginx:1.9.4
-              ```
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Automapping ports
-              - Use the -P option in **docker run**
-              - Automatically maps exposed ports in the container to a port number in the host
-              - Host port numbers used go from 49153 to 65535
-              - Only work for ports defined in the EXPOSE instruction
-
-              ```
-              #Auto map ports exposed by the NGINX container to a port value on the host
-              docker run -d -P nginx:1.9.4
-              ```
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##EXPOSE instruction
-              - Configures which ports a container will listen on at runtime
-              - Ports still need to be mapped when container is executed
-
-              ```
-              FROM ubuntu:14.04
-              RUN apt-get update
-              RUN apt-get install -y nginx
-
-              EXPOSE 80 443
-
-              CMD ["nginx","-g","daemon off;"]
-              ```
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Linking Containers
-              >**Linking** is a communication method between containers which allows them to securely transfer data from one to another
-
-              - Source and recipient containers
-              - Recipient containers have access to data on source containers
-              - Links are established based on container names
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              <img src="img/docker_linking_containers.png" alt="">
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Creating a Link
-              1. Create the source container first (database)
-              2. Create the recipient container and use the --link option
-
-              ```
-              #Create the source container using the postgres
-              docker run -d --name database postgres
-
-              #Create the recipient container and link it
-              docker run -d -P --name website --link database:db nginx
-              # "db" is an alias added in /etc/hosts
-              ```
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Uses of Linking
-              - Containers can talk to each other without having to expose ports to the host
-              - Essential for micro service application architecture 
-              - Example:
-                - Container with Tomcat running
-                - Container with MySQL running
-                - Application on Tomcat needs to connect to MySQL
-            </script>
-          </section>
-        </section>
-<!--
-        <section>
-
-          <section data-markdown>
-            <script type="text/template">
-              #10. Docker in Continuous Integration
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Traditional Continuous Integration
-              <img src="img/docker_traditional_continuous_integration.png" alt="">
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Using Docker in CI. method 1
-              - CI server builds Docker image and pushes into Docker Hub
-              <img src="img/docker_in_CI.png" alt="">
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Docker Hub Auto Build. Method 2
-              - Docker Hub detects commits to source repository and builds the image
-              - Container is run during image build
-              - Testing done inside container
-              <img src="img/docker_hub_auto_build.png" alt="">
-            </script>
-          </section>
-
-        </section>
--->
-        <section>
-
-          <section data-markdown>
-            <script type="text/template">
-              #9. Docker Compose
+              #7. Docker Compose
             </script>
           </section>
 
@@ -1063,7 +720,7 @@
         <section>
           <section data-markdown>
             <script type="text/template">
-              #10. Building Micro Service Applications
+              #8. Building Micro Service Applications
             </script>
           </section>
           

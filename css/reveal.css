@@ -36,6 +36,7 @@ body {
 /*********************************************
  * VIEW FRAGMENTS
  *********************************************/
+
 .reveal .slides section .fragment {
   opacity: 0;
   visibility: hidden;

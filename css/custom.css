@@ -30,3 +30,23 @@ img.no-border {
 p.left {
     text-align: left !important;
 }
+ .logo {
+ float:right;
+ width: 150px;
+top: 30px;
+right: 30px;
+position: relative;
+ }
+
+.reveal > p {
+font-size: 25px;
+position: relative;
+display: inline-block;
+top:30px;
+left:30px;
+}
+.reveal > p span {
+color: blue;
+text-decoration: undeline
+font-size:20px;
+}
