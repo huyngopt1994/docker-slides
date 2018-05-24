@@ -40,13 +40,13 @@ position: relative;
 
 .reveal > p {
 font-size: 25px;
-position: relative;
+position: absolute;
 display: inline-block;
-top:30px;
+top:92%;
 left:30px;
 }
 .reveal > p span {
-color: blue;
+color: navy;
 text-decoration: undeline
 font-size:20px;
 }

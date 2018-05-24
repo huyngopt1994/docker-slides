@@ -88,7 +88,7 @@
           <section data-markdown>
             <script type="text/template">
               ##Problems
-              - slow deployment times
+              - Slow deployment times
               - Huge costs
               - Wasted resources
               - Difficult to scale or migrate
@@ -97,7 +97,7 @@
 
           <section data-markdown>
             <script type="text/template">
-              ## Hypervisor-based Virtualization
+              ##Hypervisor-based Virtualization
               <img src="img/docker_hypervisor_based_virtualization.png" alt="">
 
             </script>
@@ -107,7 +107,7 @@
             <script type="text/template">
               ##BENEFITS
               - Better resource pooling
-                - one physical machine divided into multiple VM
+                - One physical machine divided into multiple VM
               - Easier to scale
               - VM's in the cloud
                 - Pay as you go
@@ -116,10 +116,10 @@
 
           <section data-markdown>
             <script type="text/template">
-              ###Limitations
+              ##Limitations
               - Each VM stills requires
                 - CPU allocation
-                - storage
+                - Storage
                 - RAM
                 - An entire guest operation system
               - More VM's you run, the more resources you need
@@ -189,11 +189,11 @@
 
           <section data-markdown>
             <script type="text/template">
-              ####Linux:
+              ###Linux:
               ```
               wget -qO- https://get.docker.com/ | sh
               ```
-              ####Windows and Mac OS X:
+              ###Windows and Mac OS X:
               Docker need linux kernel... so you will need a linux Virtual Machine.
               Docker toolbox contains everything needed.
             </script>
@@ -214,7 +214,7 @@
           <section data-markdown>
             <script type="text/template">
               ##Docker Client and Daemon
-              - client / server architecture
+              - Client / server architecture
               - Client takes user inputs and send them to the daemon
               - Daemon builds, runs, and distributes containers
               - Client and daemon can run on same or different hosts
@@ -253,19 +253,7 @@
 
           <section data-markdown>
             <script type="text/template">
-              ##Registry and Repository
-              Registry is where we store images. Registry can be private or public (Docker Hub)
-              Repositories are inside Registry
-              <img src="img/docker_registry_repository.png" alt="">
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
               ##Docker Orchestration
-              Three tools for orchestrating distributed applications with Docker
-              - Docker Machine
-                - Tool that provisions Docker hosts and installs the Docker Engine on them
               - Docker Compose
                 - Tool to create and manage multi-container applications
             </script>
@@ -283,7 +271,7 @@
           <section data-markdown>
             <script type="text/template">
               ## Search for Images on Docker Hub
-              - lots of Images available for use
+              - Lots of Images available for use
               - Images reside in various Repositories
             </script>
           </section>
@@ -369,8 +357,8 @@
           <section data-markdown>
             <script type="text/template">
               ##Find your Containers
-              - use `docker ps` to list running containers
-              - use `docker ps -a` to list all containers (includes containers that are stopped)
+              - Use `docker ps` to list running containers
+              - Use `docker ps -a` to list all containers (includes containers that are stopped)
 
               /\*Take a look\*/
             </script>
@@ -442,7 +430,7 @@
 
           <section data-markdown>
             <script type="text/template">
-              ###Build context
+              ##Build context
               - When you reference files inside instructions it must be file in your build context.
               - When building docker client will tar files from the context and send it to the docker daemon.
               - Thats also where docker will look for your Dockerfile.<br>By default its the file named Dockerfile in the root of the context (for a different one use -f option)
@@ -451,7 +439,7 @@
 
           <section data-markdown>
             <script type="text/template">
-              Example
+              ##Example
               ```
               $ docker build -t lodelestra/vim:1.2 .
               #or
@@ -464,7 +452,7 @@
 
           <section data-markdown>
             <script type="text/template">
-              output
+              ##output
               ```bash
               bash-3.2$ cat Dockerfile 
               FROM ubuntu:14.04
@@ -507,7 +495,7 @@
 
           <section data-markdown>
             <script type="text/template">
-              ###Example
+              ##Example
 
               ```bash
               bash-3.2$ cat Dockerfile 
@@ -582,8 +570,8 @@
             <script type="text/template">
               ##Deleting local Images
               - Use docker rmi command
-              - **docker rmi [image ID]**<br>or<br>**docker rmi [repo:tag]**
-              - if an image is tagged multiple times, you have to delete each tag
+              - **docker rmi [image ID]** or **docker rmi [repo:tag]**
+              - If an image is tagged multiple times, you have to delete each tag
             </script>
           </section>
         
@@ -596,29 +584,6 @@
               or
               <br>
               `docker tag [local repo:tag] [Docker Hub repo:tag]`
-            </script>
-          </section>
-        
-          <section data-markdown>
-            <script type="text/template">
-              ##Docker Hub Repositories
-              - Users can create their own repositories on Docker Hub
-              - Public and Private (one free)
-              - Push local images to a repository
-            </script>
-          </section>
-
-          <section data-markdown>
-            <script type="text/template">
-              ##Pushing images to Docker Hub
-
-              Use `docker push` command
-
-              ```
-              docker push [repo:tag]
-              ```
-              <br>
-              - Local repo must have same name and tag as the Docker Hub repo
             </script>
           </section>
         </section>
@@ -720,7 +685,7 @@
         <section>
           <section data-markdown>
             <script type="text/template">
-              #8. Building Micro Service Applications
+              #8. Demo App
             </script>
           </section>
           
@@ -737,24 +702,12 @@
               <img src="img/docker_architecture_microservices.png" alt="">
             </script>
           </section>
-          
+
           <section data-markdown>
             <script type="text/template">
-              ##Advantages
-              - Each service can be developed and upgraded independently
-              - Easier for developers to understand
-                - Only have to focus on their service
-              - If one service goes down, the application should still run, albeit with reduced functions
-              - Application is easier to troubleshoot
-              - The whole application does not have to be committed to one technology stack
+            ##Let See
             </script>
           </section>
-          
-          <section data-markdown>
-            <script type="text/template">
-            </script>
-          </section>
-          
         </section>
 
         <section>
